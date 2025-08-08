@@ -20,20 +20,22 @@ export default function RandomUserPage() {
     setUsers( cleanUsers);
   };
  useEffect(()=>{
-if (isfirstload) {
-  setfirstload(false);
-  return;
-}
-const saveUsers = JSON.stringify(users);
-localStorage.setItem("user",saveUsers);
-
+  if (isfirstload) {
+      setfirstload(false);
+      return;
+    }
+    const saveNum = JSON.stringify(genAmount);
+    localStorage.setItem("amount", saveNum);
+    const saveUsers = JSON.stringify(users);
+    localStorage.setItem("user", saveUsers);
  },[users]);
  useEffect(()=>{
+  
     const loadUser = localStorage.getItem("user");
-
-if (loadUser===null) return;
-setUsers(JSON.parse(loadUser));
- 
+    const loadNum = localStorage.getItem("amount");
+    if (loadUser === null || loadNum === null) return;
+    setUsers(JSON.parse(loadUser));
+    setGenAmount(JSON.parse(loadNum));
 
  },[]);
   return (
