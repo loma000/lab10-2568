@@ -26,15 +26,11 @@ export default function RandomUserPage() {
     }
     const saveNum = JSON.stringify(genAmount);
     localStorage.setItem("amount", saveNum);
-    const saveUsers = JSON.stringify(users);
-    localStorage.setItem("user", saveUsers);
- },[users]);
+   
+ },[genAmount]);
  useEffect(()=>{
-  
-    const loadUser = localStorage.getItem("user");
     const loadNum = localStorage.getItem("amount");
-    if (loadUser === null || loadNum === null) return;
-    setUsers(JSON.parse(loadUser));
+    if (  loadNum === null) return;
     setGenAmount(JSON.parse(loadNum));
 
  },[]);
